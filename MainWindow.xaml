@@ -1,0 +1,46 @@
+﻿<Window x:Class="WPF_Database_Tool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Database_Tool"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="567,0,0,0" TextWrapping="Wrap" Text="Connection:" VerticalAlignment="Center" Width="66"/>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Жанр:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="GenreFilter" Width="150" Margin="5"
+              SelectionChanged="GenreFilter_SelectionChanged"/>
+            <TextBlock Text="Автор:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="AuthorFilter" Width="200" Margin="5"
+              SelectionChanged="AuthorFilter_SelectionChanged"/>
+            <Button Content="Сбросить фильтр" Click="ResetFilters_Click" Margin="5"/>
+        </StackPanel>
+        <TextBlock x:Name="ConnectionStatus" HorizontalAlignment="Left" Margin="636,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="147"/>
+        <DataGrid x:Name="BooksGrid" Grid.Row="1" AutoGenerateColumns="False" 
+                  SelectionMode="Single" IsReadOnly="True" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                <DataGridTextColumn Header="Автор" Binding="{Binding Author.FullName}" Width="150"/>
+                <DataGridTextColumn Header="Жанр" Binding="{Binding Genre.Name}" Width="120"/>
+                <DataGridTextColumn Header="Год" Binding="{Binding PublishYear}" Width="80"/>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="120"/>
+                <DataGridTextColumn Header="В наличии" Binding="{Binding QuantityInStock}" Width="80"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="463,10,0,10">
+            <Button Content="Добавить" Click="AddBook_Click" Width="100" Margin="5"/>
+            <Button Content="Редактировать" Click="EditBook_Click" Width="100" Margin="5"/>
+            <Button Content="Удалить" Click="DeleteBook_Click" Width="100" Margin="5"/>
+        </StackPanel>
+        <Button Content="Жанры.." HorizontalAlignment="Left" Margin="73,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="58" Click="GenresButton_Click"/>
+        <Button Content="Авторы.." HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="58" Click="AuthorsButton_Click"/>
+        <Button Content="Найти книгу.." HorizontalAlignment="Left" Margin="136,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="82" Click="GenresButton_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+    </Grid>
+</Window>
